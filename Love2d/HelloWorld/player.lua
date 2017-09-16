@@ -6,7 +6,7 @@ local Player =  {
     animation = 'normal'
 }
 
-moveSpeed = 150
+moveSpeed = 140
 
 function Player:new (o)
     o = o or {}
@@ -41,9 +41,7 @@ function Player:update(dt)
         self.animation = 'tilt-left'
         self.x = self.x - (moveSpeed * dt)
         self.planeSound:setPitch(1.5)
-    end
-
-    if love.keyboard.isDown("right")then
+    elseif love.keyboard.isDown("right")then
         self.animation = 'tilt-right'
         self.x = self.x + (moveSpeed * dt)
         self.planeSound:setPitch(1.5)
