@@ -1,3 +1,4 @@
+local AssetManager require("managers/assetManager")
 local Player =  {
     images =  {}, 
     planeSound = nil, 
