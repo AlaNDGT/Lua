@@ -8,6 +8,8 @@ local Player =  {
 }
 
 moveSpeed = 140
+pitch = 1
+pitchUpdateSpeed = 0.05
 
 function Player:new (o)
     o = o or {}
@@ -36,16 +38,17 @@ end
 
 function Player:update(dt)
     self.animation = 'normal'
-    self.planeSound:setPitch(1)
 
     if love.keyboard.isDown("left")then
         self.animation = 'tilt-left'
         self.x = self.x - (moveSpeed * dt)
-        self.planeSound:setPitch(1.5)
+        newPitch = pitch + pitchUpdateSpeed
     elseif love.keyboard.isDown("right")then
         self.animation = 'tilt-right'
         self.x = self.x + (moveSpeed * dt)
-        self.planeSound:setPitch(1.5)
+        newPitch = pitch + pitchUpdateSpeed
+    else
+        newPitch = pitch - pitchUpdateSpeed; 
     end
 
     if love.keyboard.isDown("up")then
@@ -55,6 +58,10 @@ function Player:update(dt)
     if love.keyboard.isDown("down")then
         self.y = self.y + (moveSpeed * dt)
     end
+    
+    pitch = love.math.clamp(1, newPitch, 1.5)
+
+    self.planeSound:setPitch(pitch)
 end
 
 function Player:draw(dt)

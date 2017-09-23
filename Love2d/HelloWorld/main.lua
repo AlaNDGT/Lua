@@ -1,3 +1,5 @@
+require("utils.math")
+
 local Player = require("player")
 local AssetManager = require("managers/assetManager")
 local GameStateManager = require("managers/gameStateManager")
@@ -17,13 +19,15 @@ function love.load(arg)
 end
 
 function love.update(dt)
-	if love.keyboard.isDown('escape')then
-		love.event.push('quit')
-	end
-
     player:update(dt)
 end
 
 function love.draw(dt)
     player:draw(dt)
+end
+
+function love.keypressed(key)
+   if key == "escape" then
+      love.event.push('quit')
+   end
 end
