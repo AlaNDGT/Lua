@@ -5,10 +5,11 @@ local AssetManager = require("managers/assetManager")
 local GameStateManager = require("managers/gameStateManager")
 
 debug = true
-backgroundMusic = nil
-player = Player:new()
+local backgroundMusic = nil
+local player = null
 
 function love.load(arg)
+    player = Player:new()
     backgroundMusic = love.audio.newSource("assets/sounds/ch-ay-na.ogg")
     backgroundMusic:setLooping(true)
     backgroundMusic:setVolume(0.2)
